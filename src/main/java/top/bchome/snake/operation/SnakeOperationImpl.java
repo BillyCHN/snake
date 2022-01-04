@@ -1,7 +1,7 @@
-package com.minglead.snake.operation;
+package top.bchome.snake.operation;
 
-import com.minglead.snake.entity.Location;
-import com.minglead.snake.entity.Snake;
+import top.bchome.snake.entity.Location;
+import top.bchome.snake.entity.Snake;
 
 
 /**
@@ -28,19 +28,19 @@ public class SnakeOperationImpl implements SnakeOperation {
         Location newHead = new Location();
         Location oldHead = snake.getHead();
         switch (snake.getForward()){
-            case SnakeOperation.EAST:
+            case EAST:
                 newHead.setX(oldHead.getX()+1);
                 newHead.setY(oldHead.getY());
                 break;
-            case SnakeOperation.SOUTH:
+            case SOUTH:
                 newHead.setY(oldHead.getY()+1);
                 newHead.setX(oldHead.getX());
                 break;
-            case SnakeOperation.WEST:
+            case WEST:
                 newHead.setX(oldHead.getX()-1);
                 newHead.setY(oldHead.getY());
                 break;
-            case SnakeOperation.NORTH:
+            case NORTH:
                 newHead.setY(oldHead.getY()-1);
                 newHead.setX(oldHead.getX());
                 break;

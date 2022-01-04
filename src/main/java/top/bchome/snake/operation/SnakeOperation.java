@@ -1,6 +1,6 @@
-package com.minglead.snake.operation;
+package top.bchome.snake.operation;
 
-import com.minglead.snake.entity.Snake;
+import top.bchome.snake.entity.Snake;
 
 /**
  * @author billy hu

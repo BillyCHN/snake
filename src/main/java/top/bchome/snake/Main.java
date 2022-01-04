@@ -1,8 +1,8 @@
-package com.minglead.snake;
+package top.bchome.snake;
 
-import com.minglead.snake.entity.Snake;
-import com.minglead.snake.operation.SnakeOperation;
-import com.minglead.snake.operation.SnakeOperationImpl;
+import top.bchome.snake.entity.Snake;
+import top.bchome.snake.operation.SnakeOperation;
+import top.bchome.snake.operation.SnakeOperationImpl;
 
 import javax.swing.*;
 import java.awt.*;
@@ -21,7 +21,7 @@ public class Main {
      * @param operation
      * @return
      */
-    private static JFrame createAndShowGUI( Snake snake, SnakeOperation operation) {
+    private static JFrame createAndShowGUI(Snake snake, SnakeOperation operation) {
         JFrame.setDefaultLookAndFeelDecorated(true);
         int width = snake.getWidth();
         int height = snake.getHeight();

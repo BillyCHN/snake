@@ -1,4 +1,4 @@
-package com.minglead.snake.entity;
+package top.bchome.snake.entity;
 
 import java.util.Random;
 
