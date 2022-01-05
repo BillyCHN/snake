@@ -28,12 +28,12 @@ public class Main {
         int width = snake.getWidth();
         int height = snake.getHeight();
         // 创建及设置窗口
-        frame = new JFrame("Snake created by billy");
+        frame = new JFrame("Snake designed by billy");
         frame.setLocation(Toolkit.getDefaultToolkit().getScreenSize().width/3,100);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setLayout(new FlowLayout());
         Container head = new Container();
-        head.setLayout(new GridLayout(width,height));
+        head.setLayout(new GridLayout(3,1));
 
         //level
         JPanel level = new JPanel();
@@ -130,7 +130,7 @@ public class Main {
 
         for (int[] matrix : snake.getMatrix()) {
             for (int i : matrix) {
-                Label label = new Label();
+                Label label = new Label("  ");
                 label.setBackground(i==0? Color.WHITE:Color.BLUE);
                 main.add(label);
             }
@@ -144,7 +144,7 @@ public class Main {
         return frame;
     }
     public static void main(String[] args) {
-        int width= 30 ,height = 30;
+        int width= 20 ,height = 30;
         Snake snake = new Snake(height, width,false);
         SnakeOperationImpl snakeOperation = new SnakeOperationImpl();
         createAndShowGUI(snake,snakeOperation);
