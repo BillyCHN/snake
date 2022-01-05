@@ -23,8 +23,6 @@ public class SnakeOperationImpl implements SnakeOperation {
 
     @Override
     synchronized public void  goAhead(Snake snake) {
-        snake.setLength(snake.getLength()+1);
-
         Location newHead = new Location();
         Location oldHead = snake.getHead();
         switch (snake.getForward()){
@@ -54,17 +52,17 @@ public class SnakeOperationImpl implements SnakeOperation {
         oldHead.setNext(newHead);
         snake.setHead(newHead);
         if (snake.getMatrix()[newHead.getX()][newHead.getY()] == 1) {
-            //吃到身体
+            //eat itself
             throw new IllegalArgumentException("game over");
         }else if (snake.getMatrix()[newHead.getX()][newHead.getY()] == 0) {
-            //没吃到食物
             snake.getMatrix()[newHead.getX()][newHead.getY()] = 1;
             Location oldTail = snake.getTail();
             Location newTail = oldTail.getNext();
             snake.getMatrix()[oldTail.getX()][oldTail.getY()] = 0;
             snake.setTail(newTail);
         }else {
-            //吃到食物
+            //eat food
+            snake.setLength(snake.getLength()+1);
             snake.getMatrix()[newHead.getX()][newHead.getY()] = 1;
             snake.generateFood();
         }

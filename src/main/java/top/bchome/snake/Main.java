@@ -14,6 +14,8 @@ import java.awt.event.ActionEvent;
 public class Main {
     static JFrame frame ;
     static Container main ;
+    static JTextField scoreText ;
+    static JTextField bestText ;
 
     /**
      * create gui
@@ -32,6 +34,20 @@ public class Main {
         frame.setLayout(new FlowLayout());
         Container head = new Container();
         head.setLayout(new GridLayout(width,height));
+
+        //level
+        JPanel level = new JPanel();
+        JPanel button = new JPanel();
+        JPanel score = new JPanel();
+
+        JLabel levelTitle = new JLabel("level");
+        String []ct= {"normal","easy","hard"};
+        JComboBox  jcb1=new JComboBox(ct);
+        level.add(levelTitle);
+        level.add(jcb1);
+        head.add(level);
+
+        //button
         Button left = new Button("left");
         left.addActionListener(new AbstractAction() {
             @Override
@@ -61,13 +77,22 @@ public class Main {
                     refresh(snake);
                     while (true){
                         try {
-                            Thread.sleep(200);
+                            if (jcb1.getSelectedItem().equals("easy")) {
+                                Thread.sleep(500);
+                            }else if (jcb1.getSelectedItem().equals("normal")){
+                                Thread.sleep(200);
+                            } else {
+                                Thread.sleep(100);
+                            }
                         } catch (InterruptedException ae) {
                             ae.printStackTrace();
                         }
                         try {
                             operation.goAhead(snake);
                         }catch (IllegalArgumentException ex){
+                            if (snake.getLength()>Integer.parseInt(bestText.getText())) {
+                                bestText.setText(snake.getLength()+"");
+                            }
                             JDialog jDialog = new JDialog(frame);
                             jDialog.setSize(100,100);
                             jDialog.setLocationRelativeTo(main);
@@ -82,9 +107,23 @@ public class Main {
             }
         });
         start.setVisible(true);
-        head.add(start);
-        head.add(left);
-        head.add(right);
+        button.add(start);
+        button.add(left);
+        button.add(right);
+        head.add(button);
+
+        JLabel scoreLabel = new JLabel("score");
+        scoreText = new JTextField();
+        scoreText.setText("0");
+        JLabel bestLabel = new JLabel("best");
+        bestText = new JTextField();
+        bestText.setText("0");
+        score.add(scoreLabel);
+        score.add(scoreText);
+        score.add(bestLabel);
+        score.add(bestText);
+        head.add(score);
+
         frame.add(head);
         main = new Container();
         main.setLayout(new GridLayout(width,height));
@@ -123,6 +162,7 @@ public class Main {
             for (int j = 0; j < matrix[i].length; j++) {
                 Component component = main.getComponent(j + snake.getHeight() * i);
                 component.setBackground(matrix[i][j] == 0? Color.WHITE:Color.BLUE);
+                scoreText.setText(snake.getLength()+"");
             }
         }
     }
